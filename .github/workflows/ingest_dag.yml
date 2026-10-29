@@ -19,7 +19,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install duckdb kagglehub pandas dbt-duckdb
+          pip install "duckdb==1.5.6" kagglehub pandas dbt-duckdb
 
       - name: Execute Ingestion
         env:
