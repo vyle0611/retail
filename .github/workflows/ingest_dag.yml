@@ -1,12 +1,12 @@
-name: Daily Data Ingestion Pipeline
+name: Daily Data Pipeline (Ingest & Transform)
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Tự động chạy vào 0h sáng mỗi ngày
-  workflow_dispatch:     # Nút bấm chạy thủ công trên giao diện GitHub
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
-  ingest:
+  pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -19,10 +19,16 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install duckdb kagglehub pandas
+          pip install duckdb kagglehub pandas dbt-duckdb
 
-      - name: Execute Ingestion Script
+      - name: Execute Ingestion
         env:
           KAGGLE_API_TOKEN: ${{ secrets.KAGGLE_KEY }}
           MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
         run: python ingest.py
+
+      - name: Run dbt Transformations
+        env:
+          MOTHERDUCK_TOKEN: ${{ secrets.MOTHERDUCK_TOKEN }}
+        run: |
+          dbt run --profiles-dir .
