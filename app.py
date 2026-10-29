@@ -7,7 +7,7 @@ from groq import Groq
 st.set_page_config(page_title="Retail Lakehouse Dashboard", layout="wide")
 
 # Nếu Groq báo model bị gỡ, đổi tên model theo danh sách tại console.groq.com/docs/models
-GROQ_MODEL = "llama-3.3-70b-versatile"
+GROQ_MODEL = "allam-2-7b"
 
 # ---------- Kết nối MotherDuck ----------
 os.environ["MOTHERDUCK_TOKEN"] = st.secrets["MOTHERDUCK_TOKEN"]
