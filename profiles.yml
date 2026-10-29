@@ -1,6 +1,6 @@
 retail_dbt:
   target: dev
-  targets:
+  outputs:
     dev:
       type: duckdb
       path: "md:retail_db"
