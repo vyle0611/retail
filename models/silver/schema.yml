@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: motherduck
+    database: retail_db
+    schema: main
+    tables:
+      - name: bronze_raw_events
