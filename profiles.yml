@@ -1,0 +1,9 @@
+retail_dbt:
+  target: dev
+  targets:
+    dev:
+      type: duckdb
+      path: "md:retail_db"
+      threads: 4
+      config:
+        motherduck_token: "{{ env_var('MOTHERDUCK_TOKEN') }}"
